@@ -11,11 +11,21 @@ export const getProduct = createAsyncThunk(
   }
 );
 
+export const getProductDetail = createAsyncThunk(
+  "apiSlice/getDetailProductApi",
+  async (id) => {
+    const res = await axios(
+      `${process.env.REACT_APP_API_BASE_ENDPOINT}/products/${id}`
+    );
+    return res.data;
+  }
+);
 
 const apiSlice = createSlice({
   name: "apiSlice",
   initialState: {
     allProduct: [],
+    detailProduct: [],
     isLoading: false,
   },
   reducers: {},
@@ -28,6 +38,18 @@ const apiSlice = createSlice({
       state.isLoading = false;
     },
     [getProduct.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    },
+
+    [getProductDetail.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getProductDetail.fulfilled]: (state, action) => {
+      state.detailProduct = action.payload;
+      state.isLoading = false;
+    },
+    [getProductDetail.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     },

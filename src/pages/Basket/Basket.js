@@ -1,37 +1,45 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Button } from "flowbite-react";
+import Layout from "../../layout/Layout";
 
-export default function Basket() {
-  const { shoppingCard, totalCardPrice } = useSelector(
-    (state) => state.cardSlice
-  );
+function Basket() {
+  const dispatch = useDispatch();
+
+  const { shoppingCard } = useSelector((state) => state.cardSlice);
 
   const handleClearLocalStroge = () => {
     localStorage.removeItem("localBasket");
   };
 
+  useEffect(() => {}, [shoppingCard, dispatch]);
+
   return (
-    <div>
-      <button
-        className="btn btn-danger my-4"
-        onClick={() => handleClearLocalStroge()}
-      >
-        Clear localStroge
-      </button>
-      <h3 className="h3">Sepetteki ürünler</h3>
-      <div className="fw-bold">Toplam tutar: {totalCardPrice} </div>
+    <Layout>
+      {" "}
       <div>
-        {shoppingCard.map((item, i) => (
-          <div key={i}>
-            <div>
-              <span className="h6">{i + 1} - </span> {item.title}
+        <Button onClick={() => handleClearLocalStroge()}>
+          Clear localStroge
+        </Button>
+
+        <h3 className="font-semibold mt-5">Sepetteki ürünler</h3>
+        <div className="font-semibold">Toplam tutar: </div>
+
+        <div>
+          {shoppingCard.map((item, i) => (
+            <div key={item.id} className="mt-5">
+              <div>
+                <span className="font-semibold">{i + 1} - </span> {item.title}
+              </div>
+              <div>{item.price}</div>
+              <div>adet: {item.quantity}</div>
+              <hr />
             </div>
-            <div>{item.price}</div>
-            <div>adet: {item.quantity}</div>
-            <hr />
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 }
+
+export default Basket;

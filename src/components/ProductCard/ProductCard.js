@@ -1,7 +1,8 @@
 import React from "react";
 import { useDispatch } from "react-redux/es/exports";
 import { AddProduct } from "../../redux/cardSlice";
-
+import { Card } from "flowbite-react";
+import { Link } from "react-router-dom";
 export default function ProductCard({ allProduct }) {
   const dispatch = useDispatch();
 
@@ -19,30 +20,37 @@ export default function ProductCard({ allProduct }) {
   return (
     <>
       {allProduct.map((item) => (
-        <div className="col-md-3 mb-4" key={item.id}>
-          <div className="col-md-12">
-            <div className="card" style={{ height: 400 }}>
-              <img
-                src={item.image}
-                className="card-img-top w-50 h-50 mx-auto"
-              />
-              <div className="card-body">
-                <h6 className="card-title">{item.title}</h6>
-                <div className="my-3">
-                  <span className="h5 card-title mr-3">{item.price}</span>
-                  <span className="h5">TL</span>
-                </div>
+        <div className="max-w-sm" key={item.id} style={{ height: 400 }}>
+          <Card>
+            <Link to={`productdetail/${item.id}`}>
+              <div>
+                <img
+                  src={item.image}
+                  style={{ width: 100 }}
+                  className="mx-auto"
+                />
               </div>
+            </Link>
+
+            <a href="#">
+              <h5 className="text-sm font-semibold tracking-tight text-gray-900 dark:text-white">
+                {item.title}
+              </h5>
+            </a>
+            <div className="text-sm font-bold text-gray-900 dark:text-white">
+              {item.price} TL
+            </div>
+            <div>
               <button
                 onClick={() =>
                   handleAddProduct(item.id, item.title, item.price)
                 }
-                className="btn btn-primary"
+                className="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
-                Sepete ekle
+                Add to cart
               </button>
             </div>
-          </div>
+          </Card>
         </div>
       ))}
     </>
