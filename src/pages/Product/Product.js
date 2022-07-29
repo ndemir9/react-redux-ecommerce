@@ -6,13 +6,8 @@ import Basket from "../Basket/Basket";
 export default function Product() {
   return (
     <Layout>
-      <div className="grid grid-cols-3 gap-5 mt-10">
-        <div className="col-span-2">
-          <ProductCardBox />
-        </div>
-        <div>
-          <Basket />
-        </div>
+      <div className="w-2/3 mx-auto mt-10">
+        <ProductCardBox />
       </div>
     </Layout>
   );

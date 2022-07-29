@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import toast from "react-hot-toast";
 
 const cardSlice = createSlice({
   name: "cardSlice",
@@ -16,11 +17,13 @@ const cardSlice = createSlice({
         else state.shoppingCard = [action.payload, ...state.shoppingCard];
         // localStorage.setItem("localBasket", JSON.stringify(state.shoppingCard));
       }
+      toast.success("Ürün sepete eklendi!");
     },
     RemoveProduct: (state, action) => {
       state.shoppingCard = state.shoppingCard.filter(
         (x) => x.id != action.payload
       );
+      toast.error("Ürün sepetten silindi!");
     },
     IncrementProduct: (state, action) => {
       if (action.payload) {
@@ -36,6 +39,7 @@ const cardSlice = createSlice({
             state.shoppingCard = state.shoppingCard.filter(
               (x) => x.id != action.payload
             );
+            toast.error("Ürün sepetten silindi!");
           } else {
             addQty.quantity--;
           }

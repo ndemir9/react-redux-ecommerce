@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 
 export default function Layout({ children }) {
   return (
-    <div className="w-3/5 mx-auto">
+    <div>
       <Header />
       <div>{children}</div>
     </div>

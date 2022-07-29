@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux/es/exports";
 import { AddProduct } from "../../redux/cardSlice";
 import { Card } from "flowbite-react";
 import { Link } from "react-router-dom";
+
 export default function ProductCard({ allProduct }) {
   const dispatch = useDispatch();
 
@@ -23,7 +24,7 @@ export default function ProductCard({ allProduct }) {
       {allProduct.map((item) => (
         <div className="max-w-sm" key={item.id} style={{ height: 400 }}>
           <Card>
-            <Link to={`productdetail/${item.id}`}>
+            <Link to={`/productdetail/${item.id}`}>
               <div>
                 <img
                   src={item.image}

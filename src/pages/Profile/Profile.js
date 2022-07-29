@@ -12,7 +12,9 @@ export default function Profile() {
 
   return (
     <Layout>
-      <div>Profile</div>
+      <div className="w-2/3 mx-auto mt-10">
+        <div>Profile</div>
+      </div>
     </Layout>
   );
 }

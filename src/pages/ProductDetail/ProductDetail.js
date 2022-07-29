@@ -30,14 +30,16 @@ export default function ProductDetail() {
 
   return (
     <Layout>
-      <h1>product detail {id}</h1>
-      <div>
+      <div className="w-2/3 mx-auto mt-10">
+        <h1>product detail {id}</h1>
         <div>
-          <img src={detailProduct.image} style={{ width: 100 }} />
+          <div>
+            <img src={detailProduct.image} style={{ width: 100 }} />
+          </div>
+          <div>{detailProduct.title}</div>
+          <div>{detailProduct.description}</div>
+          <div>{detailProduct.price}</div>
         </div>
-        <div>{detailProduct.title}</div>
-        <div>{detailProduct.description}</div>
-        <div>{detailProduct.price}</div>
       </div>
     </Layout>
   );
