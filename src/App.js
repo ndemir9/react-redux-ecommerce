@@ -10,14 +10,16 @@ import Page404 from "./pages/Page404/Page404";
 
 export default function App() {
   return (
-    <Routes>
-      <Route path="/" exact="true" element={<Home />} />
-      <Route path="basket" element={<Basket />} />
-      <Route path="profile" element={<Profile />} />
-      <Route path="login" element={<Login />} />
-      <Route path="product" element={<Product />} />
-      <Route path="product/productdetail/:id" element={<ProductDetail />} />
-      <Route path="*" element={<Page404 />} />
-    </Routes>
+    <>
+      <Routes>
+        <Route path="/" exact="true" element={<Home />} />
+        <Route path="basket" element={<Basket />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="login" element={<Login />} />
+        <Route path="product" element={<Product />} />
+        <Route path="product/productdetail/:id" element={<ProductDetail />} />
+        <Route path="*" element={<Page404 />} />
+      </Routes>
+    </>
   );
 }

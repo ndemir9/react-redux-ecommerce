@@ -70,7 +70,7 @@ export default function Login() {
           {password}
         </div>
         <Button type="submit" onClick={handleLogin}>
-          Submit
+          Login
         </Button>
       </div>
     </Layout>
