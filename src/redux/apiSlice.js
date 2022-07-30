@@ -25,7 +25,17 @@ export const getProductLimit = createAsyncThunk(
   "apiSlice/getProductLimitApi",
   async () => {
     const res = await axios(
-      `${process.env.REACT_APP_API_BASE_ENDPOINT}/products?limit=8`
+      `${process.env.REACT_APP_API_BASE_ENDPOINT}/products?limit=4`
+    );
+    return res.data;
+  }
+);
+
+export const getCategory = createAsyncThunk(
+  "apiSlice/getCategoryApi",
+  async () => {
+    const res = await axios(
+      `${process.env.REACT_APP_API_BASE_ENDPOINT}/products/categories`
     );
     return res.data;
   }
@@ -37,6 +47,7 @@ const apiSlice = createSlice({
     allProduct: [],
     limitProduct: [],
     detailProduct: [],
+    allCategory: [],
     isLoading: false,
   },
   reducers: {},
@@ -73,6 +84,18 @@ const apiSlice = createSlice({
       state.isLoading = false;
     },
     [getProductLimit.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.error.message;
+    },
+
+    [getCategory.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [getCategory.fulfilled]: (state, action) => {
+      state.allCategory = action.payload;
+      state.isLoading = false;
+    },
+    [getCategory.rejected]: (state, action) => {
       state.isLoading = false;
       state.error = action.error.message;
     },

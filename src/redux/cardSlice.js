@@ -23,7 +23,7 @@ const cardSlice = createSlice({
       state.shoppingCard = state.shoppingCard.filter(
         (x) => x.id != action.payload
       );
-      toast.error("Ürün sepetten silindi!");
+      toast.success("Ürün sepetten silindi!");
     },
     IncrementProduct: (state, action) => {
       if (action.payload) {
@@ -39,7 +39,7 @@ const cardSlice = createSlice({
             state.shoppingCard = state.shoppingCard.filter(
               (x) => x.id != action.payload
             );
-            toast.error("Ürün sepetten silindi!");
+            toast.success("Ürün sepetten silindi!");
           } else {
             addQty.quantity--;
           }

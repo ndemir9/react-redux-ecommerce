@@ -17,18 +17,15 @@ export default function IndexSlider() {
   const slider3 = require("../../assets/images/slider3.png");
 
   return (
-    <div className="grid grid-cols-3 items-center gap-x-10 w-2/3 mx-auto mt-10">
-      <div className="text-5xl font-semibold">
+    <div className="lg:grid lg:grid-cols-3 lg:items-center lg:gap-x-10 w-5/6 lg:w-2/3 mx-auto mt-10">
+      <div className="text-5xl font-semibold hidden lg:block">
         Proident occaecat Aliquip ex ea commodo consequat
       </div>
-      <div className="p-5 w-full h-96 mx-auto col-span-2">
-        <Slider
-          {...settings}
-          className="bg-white drop-shadow-xl rounded-md"
-        >
-          <img src={slider3} className="object-contain h-96" />
-          <img src={slider1} className="object-contain h-96" />
-          <img src={slider2} className="object-contain h-96" />
+      <div className="lg:p-5 w-full h-48 lg:h-96 mx-auto col-span-2">
+        <Slider {...settings} className="bg-white drop-shadow-xl rounded-md">
+          <img src={slider3} className="object-contain h-48 lg:h-96" />
+          <img src={slider1} className="object-contain h-48 lg:h-96" />
+          <img src={slider2} className="object-contain h-48 lg:h-96" />
         </Slider>
       </div>
     </div>

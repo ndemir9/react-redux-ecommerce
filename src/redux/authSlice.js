@@ -1,4 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import toast from "react-hot-toast";
+
+// export const getCustomers = createAsyncThunk(
+//   "authSlice/getCustomersApi",
+//   async (username, password) => {
+//     const res = await axios.post(
+//       `${process.env.REACT_APP_API_BASE_ENDPOINT}/auth/login`,
+//       {
+//         username: username,
+//         password: password,
+//       }
+//     );
+//   }
+// );
 
 const authSlice = createSlice({
   name: "authSlice",
@@ -13,6 +28,7 @@ const authSlice = createSlice({
     singoutUser: (state) => {
       state.user = false;
       localStorage.removeItem("user");
+      toast.success("Başarıyla çıkış yapıldı");
     },
   },
 });

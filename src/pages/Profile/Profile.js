@@ -2,6 +2,7 @@ import React from "react";
 import Layout from "../../layout/Layout";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+import Header from "../../components/Header/Header";
 
 export default function Profile() {
   const { user } = useSelector((state) => state.authSlice);
@@ -11,10 +12,11 @@ export default function Profile() {
   }
 
   return (
-    <Layout>
-      <div className="w-2/3 mx-auto mt-10">
+    <>
+      <Header />
+      <div className="w-5/6 lg:w-2/3 mx-auto mt-10">
         <div>Profile</div>
       </div>
-    </Layout>
+    </>
   );
 }

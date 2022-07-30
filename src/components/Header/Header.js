@@ -7,7 +7,6 @@ import { HiOutlineShoppingBag } from "react-icons/hi";
 
 export default function Header() {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
 
   const { shoppingCard } = useSelector((state) => state.cardSlice);
@@ -23,13 +22,10 @@ export default function Header() {
   return (
     <div>
       <div className="bg-white">
-        <div className="w-2/3 mx-auto py-3 grid grid-cols-3 items-center">
+        <div className="w-5/6 lg:w-2/3 mx-auto py-3 grid grid-cols-2 items-center">
           <NavLink to="/">
             <div className="fw-bold text-xl">LOGO</div>
           </NavLink>
-          <div className="text-center">
-            <NavLink to="/product">Ürünler</NavLink>
-          </div>
           <ul className="flex gap-x-5 justify-end items-center">
             <li className="relative">
               <NavLink to="/basket">

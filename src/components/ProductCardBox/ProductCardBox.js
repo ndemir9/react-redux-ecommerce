@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { getProduct } from "../../redux/apiSlice";
 import ProductCard from "../ProductCard/ProductCard";
 
-export default function ProductCardBox() {
+export default function ProductCardBox({ category }) {
   const { allProduct, isLoading, error } = useSelector(
     (state) => state.apiSlice
   );
@@ -20,11 +20,10 @@ export default function ProductCardBox() {
   if (error) {
     return <h3>Error {error.message}</h3>;
   }
-
   return (
     <>
-      <div className="grid grid-cols-4 gap-5">
-        <ProductCard allProduct={allProduct} />
+      <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+        <ProductCard allProduct={allProduct} category={category} />
       </div>
     </>
   );

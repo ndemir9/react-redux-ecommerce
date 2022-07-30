@@ -1,4 +1,21 @@
 body {
   background-color: rgb(247, 245, 245);
   box-sizing: border-box;
+  position: relative;
+}
+
+.kisitla {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+@media only screen and (max-width: 768px) {
+  .kisitla {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
 }

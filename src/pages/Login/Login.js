@@ -4,6 +4,9 @@ import { TextInput, Button } from "flowbite-react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "../../redux/authSlice";
 import { useNavigate, Navigate } from "react-router-dom";
+import axios from "axios";
+import toast from "react-hot-toast";
+import Header from "../../components/Header/Header";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -11,22 +14,34 @@ export default function Login() {
 
   const { user } = useSelector((state) => state.authSlice);
 
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName, setUserName] = useState("mor_2314");
+  const [password, setPassword] = useState("83r5^_");
+
+  const [loading, setLoading] = useState(false);
 
   const handleLogin = async (e) => {
-    await dispatch(
-      loginUser({
-        fullName: fullName,
-        email: email,
-        password,
-        password,
+    setLoading(true);
+    await axios
+      .post(`${process.env.REACT_APP_API_BASE_ENDPOINT}/auth/login`, {
+        username: userName,
+        password: password,
       })
-    );
-    navigate("/", {
-      replace: true,
-    });
+      .then((response) => {
+        if (response.status == 200) {
+          dispatch(loginUser(response.data.token));
+          setLoading(false);
+          navigate("/", {
+            replace: true,
+          });
+          toast.success("Giriş başarılı");
+        }
+      })
+      .catch((error) => {
+        setLoading(false);
+        if (error.response.status == 401) {
+          toast.error(error.response.data);
+        }
+      });
   };
 
   if (user) {
@@ -34,30 +49,17 @@ export default function Login() {
   }
 
   return (
-    <Layout>
-      <div className="w-2/5 mx-auto mt-20">
-        <button onClick={() => localStorage.removeItem("user")}>
-          remove user
-        </button>
+    <>
+      <Header />
+      <div className="w-2/3 lg:w-2/5 mx-auto mt-20">
         <div className="mb-5">
           <TextInput
             type="text"
             required={true}
-            placeholder="Full Name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            placeholder="Full "
+            value={userName}
+            onChange={(e) => setUserName(e.target.value)}
           />
-          {fullName}
-        </div>
-        <div className="mb-5">
-          <TextInput
-            type="email"
-            required={true}
-            placeholder="E-mail"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          {email}
         </div>
         <div className="mb-5">
           <TextInput
@@ -70,9 +72,9 @@ export default function Login() {
           {password}
         </div>
         <Button type="submit" onClick={handleLogin}>
-          Login
+          {loading == true ? "Loading..." : "Login"}
         </Button>
       </div>
-    </Layout>
+    </>
   );
 }

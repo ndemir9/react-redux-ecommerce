@@ -18,7 +18,7 @@ export default function App() {
         <Route path="/basket" element={<Basket />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/product" element={<Product />} />
+        <Route path="/product/:category" element={<Product />} />
         <Route path="/productdetail/:id" element={<ProductDetail />} />
         <Route path="*" element={<Page404 />} />
       </Routes>
