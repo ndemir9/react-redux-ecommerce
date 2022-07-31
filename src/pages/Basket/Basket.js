@@ -14,11 +14,6 @@ function Basket() {
   const dispatch = useDispatch();
 
   const { shoppingCard } = useSelector((state) => state.cardSlice);
-
-  const handleClearLocalStroge = () => {
-    localStorage.removeItem("localBasket");
-  };
-
   const handleRemoveProduct = (productId) => {
     dispatch(RemoveProduct(productId));
   };

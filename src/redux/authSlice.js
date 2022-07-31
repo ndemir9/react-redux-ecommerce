@@ -1,19 +1,5 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice } from "@reduxjs/toolkit";
 import toast from "react-hot-toast";
-
-// export const getCustomers = createAsyncThunk(
-//   "authSlice/getCustomersApi",
-//   async (username, password) => {
-//     const res = await axios.post(
-//       `${process.env.REACT_APP_API_BASE_ENDPOINT}/auth/login`,
-//       {
-//         username: username,
-//         password: password,
-//       }
-//     );
-//   }
-// );
 
 const authSlice = createSlice({
   name: "authSlice",

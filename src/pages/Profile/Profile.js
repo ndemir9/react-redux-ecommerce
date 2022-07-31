@@ -16,6 +16,7 @@ export default function Profile() {
       <Header />
       <div className="w-5/6 lg:w-2/3 mx-auto mt-10">
         <div>Profile</div>
+        <pre>{JSON.stringify(user, null, 2)}</pre>
       </div>
     </>
   );

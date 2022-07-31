@@ -14,7 +14,7 @@ export default function Login() {
 
   const { user } = useSelector((state) => state.authSlice);
 
-  const [userName, setUserName] = useState("mor_2314");
+  const [userName, setUserName] = useState("1");
   const [password, setPassword] = useState("83r5^_");
 
   const [loading, setLoading] = useState(false);
@@ -22,13 +22,10 @@ export default function Login() {
   const handleLogin = async (e) => {
     setLoading(true);
     await axios
-      .post(`${process.env.REACT_APP_API_BASE_ENDPOINT}/auth/login`, {
-        username: userName,
-        password: password,
-      })
+      .get(`${process.env.REACT_APP_API_BASE_ENDPOINT}/users/${userName}`)
       .then((response) => {
         if (response.status == 200) {
-          dispatch(loginUser(response.data.token));
+          dispatch(loginUser(response.data));
           setLoading(false);
           navigate("/", {
             replace: true,
@@ -43,6 +40,32 @@ export default function Login() {
         }
       });
   };
+
+  // const handleLogin = async (e) => {
+  //   setLoading(true);
+  //   await axios
+  //     .post(`${process.env.REACT_APP_API_BASE_ENDPOINT}/auth/login`, {
+  //       username: userName,
+  //       password: password,
+  //     })
+  //     .then((response) => {
+  //       if (response.status == 200) {
+  //         console.log(response.data.token);
+  //         dispatch(loginUser(response.data.token));
+  //         setLoading(false);
+  //         navigate("/", {
+  //           replace: true,
+  //         });
+  //         toast.success("Giriş başarılı");
+  //       }
+  //     })
+  //     .catch((error) => {
+  //       setLoading(false);
+  //       if (error.response.status == 401) {
+  //         toast.error(error.response.data);
+  //       }
+  //     });
+  // };
 
   if (user) {
     return <Navigate to="/" />;

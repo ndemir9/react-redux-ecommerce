@@ -3,6 +3,10 @@ body {
   box-sizing: border-box;
   position: relative;
 }
+textarea:focus,
+input:focus {
+  outline: none;
+}
 
 .kisitla {
   overflow: hidden;

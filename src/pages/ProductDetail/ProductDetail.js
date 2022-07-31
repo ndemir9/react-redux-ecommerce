@@ -62,8 +62,8 @@ export default function ProductDetail() {
           {detailProduct.category} {">"} {detailProduct.title}
         </div>
       </div>
-      <div className="w-full lg:w-2/3 mx-auto lg:mt-10">
-        <div className="grid lg:grid-cols-2 gap-x-5">
+      <div className="w-full lg:w-2/3 mx-auto">
+        <div className="grid lg:grid-cols-2">
           <div className="bg-white p-5">
             <img
               src={detailProduct.image}
