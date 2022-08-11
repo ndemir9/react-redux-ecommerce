@@ -13,7 +13,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 function Basket() {
   const dispatch = useDispatch();
 
-  const { shoppingCard } = useSelector((state) => state.cardSlice);
+
+  const { shoppingCard, totalPrice } = useSelector((state) => state.cardSlice);
   const handleRemoveProduct = (productId) => {
     dispatch(RemoveProduct(productId));
   };
@@ -96,7 +97,7 @@ function Basket() {
             Toplam tutar
           </h3>
           <div className="font-semibold text-lg lg:text-2xl">
-            1300 <span className="text-md lg:text-xl">TL</span>
+            {totalPrice} <span className="text-md lg:text-xl">TL</span>
           </div>
           <div>
             <button className="w-full bg-green-500 text-white  text-xl  mt-3 lg:mt-5 rounded text-center py-2 hover:opacity-75 ease-in duration-100">

@@ -6,6 +6,7 @@ const cardSlice = createSlice({
   initialState: {
     // shoppingCard: JSON.parse(localStorage.getItem("localBasket")) || [],
     shoppingCard: [],
+    totalPrice: 0
   },
   reducers: {
     AddProduct: (state, action) => {
